@@ -1,0 +1,30 @@
+.table-row {
+	display: flex;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+	cursor: pointer;
+	transition: all 0.2s ease;
+	padding: 5px 10px;
+	align-items: center;
+}
+
+.table-row div {
+	width: calc((100% - 60px) / 5);
+	text-overflow: ellipsis;
+}
+
+.table-row div.number {
+	width: 60px;
+	font-weight: bold;
+}
+
+.table-row:hover {
+	background-color: rgba(0, 0, 0, 0.075);
+}
+
+.table-header {
+	font-weight: bold;
+}
+
+.table-row.active {
+	background-color: red;
+}

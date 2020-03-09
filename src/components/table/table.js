@@ -1,51 +1,27 @@
 import React from 'react'
-// import TableRow from '../table-row/table-row'
+import { FixedSizeList  as List } from 'react-window'
+import { connect } from 'react-redux'
+import RowRenderer from '../row-renderer/row-renderer'
 
 const Table = ({ data }) => {
-	const items = data.map( (el, ind) => {
-		return (
-			<tr key={ el.id }>
-				<td>
-					{ ind + 1 }
-				</td>
-				<td>
-					{ el.first_name }
-				</td>
-				<td>
-					{ el.last_name }
-				</td>
-				<td>
-					<a href={ el.email }>
-						{ el.email }
-					</a>
-				</td>
-				<td>
-					{ el.gender }
-				</td>
-				<td>
-					{ el.carMake }
-				</td>
-			</tr>
-		)
-	})
-
 	return (
-		<table className="table table-hover">
-			<thead>
-				<tr>
-					<th>№</th>
-					<th>First name</th>
-					<th>Last name</th>
-					<th>Email</th>
-					<th>Gender</th>
-					<th>Car</th>
-				</tr>
-			</thead>
-			<tbody>
-				{ items }
-			</tbody>
-		</table>
+		<List
+		    height={window.innerHeight}
+		    itemCount={data.length + 1}
+		    itemSize={50}
+		    width={0.95 * window.innerWidth}
+		    itemData={data}
+		  >
+		  	{ RowRenderer }
+		</List>
 	)
 }
 
-export default Table
+const mapStateToProps = ({ data}) => {
+	return {
+		data
+	}
+}
+
+
+export default connect(mapStateToProps)(Table)
