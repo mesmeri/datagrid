@@ -1,7 +1,9 @@
 import mockData from './mock-data.json'
 
-export default class DataService {
+class DataService {
 	getData () {
-		return mockData
+		return new Promise((resolve) => setTimeout(() => resolve(mockData), 1000))
 	}
 }
+
+export default DataService
