@@ -1,8 +1,5 @@
 import React, { PureComponent } from 'react'
 
-import './row-renderer.css'
-
-
 class RowRenderer extends PureComponent {
 
 	render () {

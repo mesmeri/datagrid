@@ -1,25 +1,23 @@
 import React from 'react'
-import { FixedSizeList  as List } from 'react-window'
 import { connect } from 'react-redux'
-import RowRenderer from '../row-renderer/row-renderer'
+import RowRenderer from './row-renderer/row-renderer'
+import NativeTable from './native-table/native-table'
+import VirtualizedTable from './virtualized-table/virtualized-table'
 
-const Table = ({ data }) => {
+import './table.css'
+
+const Table = ({ data, virtualization }) => {
 	return (
-		<List
-		    height={window.innerHeight}
-		    itemCount={data.length + 1}
-		    itemSize={50}
-		    width={0.95 * window.innerWidth}
-		    itemData={data}
-		  >
-		  	{ RowRenderer }
-		</List>
+		<>
+			{ virtualization ? <VirtualizedTable data={data} /> : <NativeTable data={data} /> }
+		</>
 	)
 }
 
-const mapStateToProps = ({ data}) => {
+const mapStateToProps = ({ data, virtualization }) => {
 	return {
-		data
+		data,
+		virtualization
 	}
 }
 

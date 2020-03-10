@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Table from './components/table/table'
 import Header from './components/header/header'
 import DataService from './services/data-service'
 import Spinner from './components/spinner/spinner'
 import { connect } from 'react-redux'
-import { dataLoaded } from './actions/actions'
+import { dataLoaded, toggleVirtualization } from './actions/actions'
 
-class App extends React.Component {
+class App extends Component {
 
   async componentDidMount() {
   	const dataService = new DataService()
@@ -14,11 +14,15 @@ class App extends React.Component {
   	this.props.dataLoaded(data)
   }
 
+  handleToggleVirtualization = () => {
+  	this.props.toggleVirtualization()
+  }
+
   render () {
 
   	return (
 	  	<>
-		  	<Header />
+		  	<Header handleToggleVirtualization={this.handleToggleVirtualization}/>
 		  	<div className="container-fluid">
 			  	<h1 className="text-center mb-4 mt-5">
 			  		Table with mock data
@@ -39,7 +43,8 @@ const mapStateToProps = ({ loading }) => {
 }
 
 const mapDispatchToProps = {
-	dataLoaded
+	dataLoaded,
+	toggleVirtualization
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

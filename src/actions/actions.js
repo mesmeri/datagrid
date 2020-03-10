@@ -5,6 +5,13 @@ const dataLoaded = (data) => {
 	}
 }
 
+const toggleVirtualization = () => {
+	return {
+		type: 'TOGGLE_VIRTUALIZATION',
+	}
+}
+
 export {
-	dataLoaded
+	dataLoaded,
+	toggleVirtualization
 }

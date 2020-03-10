@@ -1,3 +1,14 @@
+.table-wrapper {
+	display: flex;
+	justify-content: center;
+}
+
+.table-inner {
+	width: calc(100% - 40px);
+	height: 100vh;
+	overflow-y: scroll;
+}
+
 .table-row {
 	display: flex;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.075);
@@ -7,9 +18,15 @@
 	align-items: center;
 }
 
+.native-table-row {
+	padding: 13px 10px;
+}
+
 .table-row div {
 	width: calc((100% - 60px) / 5);
 	text-overflow: ellipsis;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .table-row div.number {
