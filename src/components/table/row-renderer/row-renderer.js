@@ -1,6 +1,11 @@
 import React, { PureComponent } from 'react'
+import SortIndicators from '../../../components/sort-indicators/sort-indicators'
 
 class RowRenderer extends PureComponent {
+
+	handleSortClick = (columnId, direction) => {
+		
+	}
 
 	render () {
 
@@ -8,11 +13,26 @@ class RowRenderer extends PureComponent {
 			return (
 				<div className="table-row table-header" style={this.props.style}>
 					<div className="number">№</div>
-					<div>First name</div>
-					<div>Last name</div>
-					<div>Email</div>
-					<div>Gender</div>
-					<div>Car</div>
+					<div className="column-header">
+						First name
+						<SortIndicators handleSortClick={this.handleSortClick} columnId="name" />
+					</div>
+					<div className="column-header">
+						Last name
+						<SortIndicators handleSortClick={this.handleSortClick} columnId="lastName" />
+					</div>
+					<div className="column-header">
+						Gender
+						<SortIndicators handleSortClick={this.handleSortClick} columnId="gender" />
+					</div>
+					<div className="column-header">
+						Points
+						<SortIndicators handleSortClick={this.handleSortClick} columnId="points" />
+					</div>
+					<div className="column-header">
+						Shirt size
+						<SortIndicators handleSortClick={this.handleSortClick} columnId="shirtSize"/>
+					</div>
 				</div>
 			)
 		}
@@ -25,15 +45,11 @@ class RowRenderer extends PureComponent {
 				className={classes.join(' ')} 
 			>
 				<div className="number">{this.props.index}</div>
-				<div>{el.first_name}</div>
-				<div>{el.last_name}</div>
-				<div>
-					<a href={el.email}>
-						{el.email}
-					</a>
-				</div>
+				<div>{el.firstName}</div>
+				<div>{el.lastName}</div>
 				<div>{el.gender}</div>
-				<div>{el.carMake}</div>
+				<div>{el.points}</div>
+				<div>{el.shirtSize}</div>
 			</div>
 		)
 	}

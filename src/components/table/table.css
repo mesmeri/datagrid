@@ -34,7 +34,7 @@
 	font-weight: bold;
 }
 
-.table-row:hover {
+.table-row:not(.table-header):hover {
 	background-color: rgba(0, 0, 0, 0.075);
 }
 
@@ -42,6 +42,6 @@
 	font-weight: bold;
 }
 
-.table-row.active {
-	background-color: red;
+.column-header {
+	position: relative;
 }
