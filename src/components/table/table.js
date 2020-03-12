@@ -1,15 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import RowRenderer from './row-renderer/row-renderer'
 import NativeTable from './native-table/native-table'
 import VirtualizedTable from './virtualized-table/virtualized-table'
 
 import './table.css'
 
 const Table = ({ data, virtualization }) => {
+
 	return (
 		<>
-			{ virtualization ? <VirtualizedTable data={data} /> : <NativeTable data={data} /> }
+			{ virtualization ? 
+				<VirtualizedTable data={data} /> : 
+				<NativeTable data={data} /> }
 		</>
 	)
 }
@@ -17,9 +19,8 @@ const Table = ({ data, virtualization }) => {
 const mapStateToProps = ({ data, virtualization }) => {
 	return {
 		data,
-		virtualization
+		virtualization,
 	}
 }
-
 
 export default connect(mapStateToProps)(Table)

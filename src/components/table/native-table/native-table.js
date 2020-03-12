@@ -1,19 +1,16 @@
 import React from 'react'
+import TableHeaders from '../table-headers/table-headers'
 
 const NativeTable = ({ data }) => {
 	const listItems = data.map((el, index) => {
 		return (
-			<div className="table-row native-table-row" key={el.first_name + el.last_name}>
+			<div className="table-row native-table-row" key={el.firstName + el.lastName}>
 				<div className="number">{index + 1}</div>
-				<div>{el.first_name}</div>
-				<div>{el.last_name}</div>
-				<div>
-					<a href={el.email}>
-						{el.email}
-					</a>
-				</div>
+				<div>{el.firstName}</div>
+				<div>{el.lastName}</div>
 				<div>{el.gender}</div>
-				<div>{el.carMake}</div>
+				<div>{el.points}</div>
+				<div>{el.shirtSize}</div>
 			</div>
 		)
 	})
@@ -21,13 +18,8 @@ const NativeTable = ({ data }) => {
 	return (
 		<div className="table-wrapper">
 			<div className="table-inner">
-				<div className="table-row native-table-row table-header">
-					<div className="number">№</div>
-					<div>First name</div>
-					<div>Last name</div>
-					<div>Email</div>
-					<div>Gender</div>
-					<div>Car</div>
+				<div className="table-row table-header">
+					<TableHeaders data={data} />
 				</div>
 				{ listItems }
 			</div>

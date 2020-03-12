@@ -1,17 +1,40 @@
 import React from 'react'
+import { columnDirectionChanged } from '../../actions/actions'
+import { connect } from 'react-redux'
 
 import './sort-indicators.css'
 
-const SortIndicators = ({ handleSortClick, columnId }) => {
-	console.log(handleSortClick, columnId)
-	const handleUpSortClick = () => handleSortClick(columnId, 'up')
-	const handleBottomSortClick = () => handleSortClick(columnId, 'bottom')
+const SortIndicators = ({ columnId, direction, columnDirectionChanged, handleSort }) => {
+	const handleChangeDirection = (e) => {
+		const direction = e.target.value
+		const isShiftPressed = e.shiftKey	
+
+		columnDirectionChanged(direction, columnId)
+		handleSort(isShiftPressed, columnId, direction)
+	}
+
 	return (
 		<div className="sort-indicators">
-			<button className="arrow arrow-up" onClick={handleUpSortClick} />
-			<button className="arrow arrow-bottom" onClick={handleBottomSortClick} />
+			<input type="radio" name="direction" 
+				checked={direction === 'asc'}
+				onChange={(e) => handleChangeDirection(e)}
+				className="arrow arrow-up" 
+				value="asc" />
+			<input type="radio" name="direction"
+				checked={direction === 'desc'} 
+				onChange={(e) => handleChangeDirection(e)}
+				className="arrow arrow-down"
+				value="desc" />
 		</div>
 	)
 }
 
-export default SortIndicators
+const mapStateToProps = () => {
+	return {}
+}
+
+const mapDispatchToProps = {
+	columnDirectionChanged,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SortIndicators)

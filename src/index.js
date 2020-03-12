@@ -7,7 +7,6 @@ import App from './App'
 import store from './store/store'
 
 import './styles/bootstrap.min.css'
-console.log(store)
 
 const Application = () => {
 	return (

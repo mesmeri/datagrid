@@ -40,8 +40,14 @@
 
 .table-header {
 	font-weight: bold;
+	align-items: stretch;
+	user-select: none;
 }
 
 .column-header {
 	position: relative;
+}
+
+.column-header.selected {
+	color: #ee686e;
 }

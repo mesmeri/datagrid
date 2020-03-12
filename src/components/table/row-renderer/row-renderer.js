@@ -1,38 +1,14 @@
 import React, { PureComponent } from 'react'
-import SortIndicators from '../../../components/sort-indicators/sort-indicators'
+import TableHeaders from '../table-headers/table-headers'
 
 class RowRenderer extends PureComponent {
-
-	handleSortClick = (columnId, direction) => {
-		
-	}
 
 	render () {
 
 		if (this.props.index === 0) {
 			return (
 				<div className="table-row table-header" style={this.props.style}>
-					<div className="number">№</div>
-					<div className="column-header">
-						First name
-						<SortIndicators handleSortClick={this.handleSortClick} columnId="name" />
-					</div>
-					<div className="column-header">
-						Last name
-						<SortIndicators handleSortClick={this.handleSortClick} columnId="lastName" />
-					</div>
-					<div className="column-header">
-						Gender
-						<SortIndicators handleSortClick={this.handleSortClick} columnId="gender" />
-					</div>
-					<div className="column-header">
-						Points
-						<SortIndicators handleSortClick={this.handleSortClick} columnId="points" />
-					</div>
-					<div className="column-header">
-						Shirt size
-						<SortIndicators handleSortClick={this.handleSortClick} columnId="shirtSize"/>
-					</div>
+					<TableHeaders />
 				</div>
 			)
 		}
@@ -56,3 +32,43 @@ class RowRenderer extends PureComponent {
 }
 
 export default RowRenderer
+
+
+				// <div className="table-row table-header" style={this.props.style}>
+				// 	<div className="number">№</div>
+				// 	<div className="column-header"
+				// 		onClick={this.handleSort.bind(this, 'name')} 
+				// 		columnId="name"
+				// 		>
+				// 		First name
+				// 		<SortIndicators />
+				// 	</div>
+				// 	<div className="column-header"
+				// 		onClick={this.handleSort.bind(this, 'lastName')}
+				// 		columnId="lastName"
+				// 		>
+				// 		Last name
+				// 		<SortIndicators />
+				// 	</div>
+				// 	<div className="column-header" 
+				// 		onClick={this.handleSort.bind(this, 'gender')}
+				// 		columnId="gender"
+				// 		>
+				// 		Gender
+				// 		<SortIndicators />
+				// 	</div>
+				// 	<div className="column-header" 
+				// 		onClick={this.handleSort.bind(null, 'points')}
+				// 		columnId="points"
+				// 		>
+				// 		Points
+				// 		<SortIndicators />
+				// 	</div>
+				// 	<div className="column-header"
+				// 		onClick={this.handleSort.bind(this, 'shirtSize')}
+				// 		columnId="shirtSize"
+				// 		>
+				// 		Shirt size
+				// 		<SortIndicators />
+				// 	</div>
+				// </div>

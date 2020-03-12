@@ -7,7 +7,7 @@ const VirtualizedTable = ({ data }) => {
 		<List
 		    height={window.innerHeight}
 		    itemCount={data.length + 1}
-		    itemSize={50}
+		    itemSize={45}
 		    width={0.95 * window.innerWidth}
 		    itemData={data}
 		  >
