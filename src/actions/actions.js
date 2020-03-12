@@ -49,6 +49,13 @@ const columnDirectionChanged = (direction, columnId) => {
 	}
 }
 
+const nothingMatched = (value) => {
+	return {
+		type: 'NOTHING_MATCHED',
+		payload: value,
+	}
+}
+
 export {
 	dataLoaded,
 	toggleVirtualization,
@@ -57,4 +64,5 @@ export {
 	columnClearedAll,
 	dataChanged,
 	columnDirectionChanged,
+	nothingMatched,
 }

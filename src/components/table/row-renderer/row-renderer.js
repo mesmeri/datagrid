@@ -13,7 +13,8 @@ class RowRenderer extends PureComponent {
 			)
 		}
 
-		const el = this.props.data[this.props.index - 1];
+		const el = this.props.data[this.props.index - 1]
+		const married = el.isMarried ? "Yes" : "No"
 		const classes = ["table-row"];
 
 		return (
@@ -24,6 +25,7 @@ class RowRenderer extends PureComponent {
 				<div>{el.firstName}</div>
 				<div>{el.lastName}</div>
 				<div>{el.gender}</div>
+				<div>{married}</div>
 				<div>{el.points}</div>
 				<div>{el.shirtSize}</div>
 			</div>

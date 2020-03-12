@@ -51,3 +51,9 @@
 .column-header.selected {
 	color: #ee686e;
 }
+
+.no-data {
+	padding: 50px 20px;
+	font-size: 28px;
+	font-style: italic;
+}

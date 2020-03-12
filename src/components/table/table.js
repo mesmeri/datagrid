@@ -5,21 +5,32 @@ import VirtualizedTable from './virtualized-table/virtualized-table'
 
 import './table.css'
 
-const Table = ({ data, virtualization }) => {
+const Table = ({ data, changedData, virtualization, noMatchedData }) => {
+
+	const rowData = (changedData.length === 0) ? data : changedData
+	console.log('from table', rowData.length, noMatchedData)
+	const NoData = () => {
+		return (
+			<div className="no-data text-center">Sorry, nothing was found ...</div>
+		)
+	}
 
 	return (
 		<>
-			{ virtualization ? 
-				<VirtualizedTable data={data} /> : 
-				<NativeTable data={data} /> }
+		{ noMatchedData ? < NoData /> : virtualization ? 
+				<VirtualizedTable data={rowData} /> : 
+				<NativeTable data={rowData} />}
+
 		</>
 	)
 }
 
-const mapStateToProps = ({ data, virtualization }) => {
+const mapStateToProps = ({ data, changedData, virtualization, noMatchedData }) => {
 	return {
 		data,
+		changedData,
 		virtualization,
+		noMatchedData,
 	}
 }
 

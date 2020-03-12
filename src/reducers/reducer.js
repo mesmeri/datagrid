@@ -4,6 +4,7 @@ const initialState = {
 	loading: true,
 	virtualization: true,
 	selectedColumns: [],
+	noMatchedData: false,
 }
 
 const reducer = (state = initialState, action) => {
@@ -45,7 +46,7 @@ const reducer = (state = initialState, action) => {
 		case 'DATA_CHANGED':
 			return {
 				...state,
-				data: action.payload,
+				changedData: action.payload,
 			}
 		case 'COLUMN_DIRECTION_CHANGED':
 			const column = state.selectedColumns.find((el) => el.id === action.columnId)
@@ -62,6 +63,12 @@ const reducer = (state = initialState, action) => {
 					...state.selectedColumns.slice(id + 1)
 				]
 			}
+		case 'NOTHING_MATCHED': {
+			return {
+				...state,
+				noMatchedData: action.payload
+			}
+		}
 		default: 
 			return state
 	}

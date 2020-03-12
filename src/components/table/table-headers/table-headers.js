@@ -1,12 +1,12 @@
 import React from 'react'
 import SortIndicators from '../../sort-indicators/sort-indicators'
-import { columnSelected, columnUnselected, columnClearedAll, dataChanged } from '../../../actions/actions'
+import { columnSelected, columnUnselected, columnClearedAll, dataChanged, nothingMatched } from '../../../actions/actions'
 import { connect } from 'react-redux'
 import { sortItems } from '../../../utils/utils'
 import DataService from '../../../services/data-service'
 
-const TableHeaders = ({ data, selectedColumns, columnSelected, columnUnselected, columnClearedAll, dataChanged }) => {
-	const headers = ['Number', 'First name', 'Last name', 'Gender', 'Points', 'Shirt size']
+const TableHeaders = ({ data, selectedColumns, columnSelected, columnUnselected, columnClearedAll, dataChanged, nothingMatched }) => {
+	const headers = ['Number', 'First name', 'Last name', 'Gender', 'Married', 'Points', 'Shirt size']
 	const service = new DataService()
 	const handleClick = (e, columnId) => {
 		if (e.target.tagName === 'INPUT') {
@@ -84,6 +84,7 @@ const mapDispatchToProps = {
 	columnUnselected,
 	columnClearedAll,
 	dataChanged,
+	nothingMatched,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TableHeaders)
