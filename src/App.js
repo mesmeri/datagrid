@@ -3,7 +3,7 @@ import Table from './components/table/table'
 import Header from './components/header/header'
 import DataService from './services/data-service'
 import Spinner from './components/spinner/spinner'
-import Search from './components/search/search'
+import ControlBar from './components/control-bar/control-bar'
 import { connect } from 'react-redux'
 import { dataLoaded, toggleVirtualization } from './actions/actions'
 
@@ -27,10 +27,8 @@ class App extends Component {
 			  	<h1 className="text-center mb-3 mt-3">
 			  		Table with mock data
 			  	</h1>
-		  		<div className="controls-block pt-3">
-		  			<Search />
-		  		</div>
-			  	<main className="pt-5">
+			  	<main className="pt-1">
+		  			<ControlBar />
 			  		{ this.props.loading ? <Spinner /> : <Table />}
 			  	</main>
 			</div>

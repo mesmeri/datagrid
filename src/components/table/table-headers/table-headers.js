@@ -5,9 +5,11 @@ import { connect } from 'react-redux'
 import { sortItems } from '../../../utils/utils'
 import DataService from '../../../services/data-service'
 
-const TableHeaders = ({ data, selectedColumns, columnSelected, columnUnselected, columnClearedAll, dataChanged, nothingMatched }) => {
+const service = new DataService()
+
+const TableHeaders = ({ data, changedData, selectedColumns, columnSelected, columnUnselected, columnClearedAll, dataChanged, nothingMatched }) => {
 	const headers = ['Number', 'First name', 'Last name', 'Gender', 'Married', 'Points', 'Shirt size']
-	const service = new DataService()
+	const cloneData = (changedData.length === 0) ? [...data] : [...changedData]
 	const handleClick = (e, columnId) => {
 		if (e.target.tagName === 'INPUT') {
 			return
@@ -20,7 +22,7 @@ const TableHeaders = ({ data, selectedColumns, columnSelected, columnUnselected,
 
 	const handleSort = (e, columnId, direction) => {
 		const field = service.mapStrToDataField(columnId)
-		const orderedData = sortItems([...data], field, direction)
+		const orderedData = sortItems(cloneData, field, direction)
 
 		dataChanged(orderedData)
 	}
@@ -72,9 +74,10 @@ const TableHeaders = ({ data, selectedColumns, columnSelected, columnUnselected,
 	)
 }
 
-const mapStateToProps = ({ data, selectedColumns }) => {
+const mapStateToProps = ({ data, changedData, selectedColumns }) => {
 	return {
 		data,
+		changedData,
 		selectedColumns,
 	}
 }

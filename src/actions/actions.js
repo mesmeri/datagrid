@@ -56,6 +56,19 @@ const nothingMatched = (value) => {
 	}
 }
 
+const prevDataApplied = () => {
+	return {
+		type: 'PREV_DATA_APPLIED'
+	}
+}
+
+const prevDataStashed = (data) => {
+	return {
+		type: 'PREV_DATA_STASHED',
+		payload: data,
+	}
+}
+
 export {
 	dataLoaded,
 	toggleVirtualization,
@@ -65,4 +78,6 @@ export {
 	dataChanged,
 	columnDirectionChanged,
 	nothingMatched,
+	prevDataApplied,
+	prevDataStashed,
 }

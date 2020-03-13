@@ -1,6 +1,7 @@
 const initialState = {
 	data: [],
 	changedData: [],
+	prevData: [],
 	loading: true,
 	virtualization: true,
 	selectedColumns: [],
@@ -67,6 +68,19 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				noMatchedData: action.payload
+			}
+		}
+		case 'PREV_DATA_APPLIED': {
+			return {
+				...state,
+				changedData: [...state.prevData],
+				prevData: [],
+			}
+		}
+		case 'PREV_DATA_STASHED': {
+			return {
+				...state,
+				prevData: action.payload,
 			}
 		}
 		default: 

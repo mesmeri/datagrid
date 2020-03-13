@@ -15,6 +15,8 @@ class DataService {
 				return 'lastName'
 			case 'Gender':
 				return 'gender'
+			case 'Married':
+				return 'isMarried'
 			case 'Points':
 				return 'points'
 			case 'Shirt size':
