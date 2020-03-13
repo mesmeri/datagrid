@@ -69,6 +69,12 @@ const prevDataStashed = (data) => {
 	}
 }
 
+const sizesSelected = () => {
+	return {
+		
+	}
+}
+
 export {
 	dataLoaded,
 	toggleVirtualization,
@@ -80,4 +86,5 @@ export {
 	nothingMatched,
 	prevDataApplied,
 	prevDataStashed,
+	sizesSelected,
 }
