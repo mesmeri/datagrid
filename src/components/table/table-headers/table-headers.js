@@ -1,84 +1,79 @@
 import React from 'react'
 import SortIndicators from '../../sort-indicators/sort-indicators'
-import { columnSelected, columnUnselected, columnClearedAll, dataChanged, nothingMatched } from '../../../actions/actions'
+import { columnSelected, columnUnselected, columnClearedAll } from '../../../actions/actions'
 import { connect } from 'react-redux'
-import { sortItems } from '../../../utils/utils'
-import DataService from '../../../services/data-service'
+import store from '../../../store/store'
 
-const service = new DataService()
+const headers = ['Number', 'First name', 'Last name', 'Gender', 'Married', 'Points', 'Shirt size']
 
-const TableHeaders = ({ data, changedData, selectedColumns, columnSelected, columnUnselected, columnClearedAll, dataChanged, nothingMatched }) => {
-	const headers = ['Number', 'First name', 'Last name', 'Gender', 'Married', 'Points', 'Shirt size']
-	const cloneData = (changedData.length === 0) ? [...data] : [...changedData]
-	const handleClick = (e, columnId) => {
+class TableHeaders extends React.PureComponent {
+
+	handleClick = (e, columnId) => {
 		if (e.target.tagName === 'INPUT') {
 			return
 		}
 		const isShiftPressed = e.shiftKey	
 
-		handleSort(isShiftPressed, columnId)
-		toggleColumn(isShiftPressed, columnId)
+		this.toggleColumn(isShiftPressed, columnId)
 	}
 
-	const handleSort = (e, columnId, direction) => {
-		const field = service.mapStrToDataField(columnId)
-		const orderedData = sortItems(cloneData, field, direction)
-
-		dataChanged(orderedData)
-	}
-
-	const toggleColumn = (isShiftPressed, columnId) => {
-		if (selectedColumns.find((el) => el.id === columnId)) {
-			columnUnselected(columnId)
-		} else if (!isShiftPressed && selectedColumns.length !== 0) {
-			columnClearedAll()
-			columnSelected(columnId)
+	toggleColumn = (isShiftPressed, columnId) => {
+		const { dispatch } = store
+		const { sortedColumns, 
+				columnSelected, 
+				columnUnselected, 
+				columnClearedAll } = this.props
+		if (sortedColumns.find((el) => el.id === columnId)) {
+			dispatch(columnUnselected(columnId))
+		} else if (!isShiftPressed && sortedColumns.length !== 0) {
+			dispatch(columnClearedAll())
+			dispatch(columnSelected(columnId))
 		} else {
-			columnSelected(columnId)
+			dispatch(columnSelected(columnId))
 		}
 	}
 
-	const items = headers.map(el => {
-		if (el === 'Number') {
+	render () {
+		const { sortedColumns } = this.props
+
+		const items = headers.map(el => {
+			if (el === 'Number') {
+				return <div className="number" key={el}>№</div>
+			}
+
+			const classes = ['column-header']
+			const columnInfo = sortedColumns.find((column) => column.id === el)
+			let direction = null
+
+			if (columnInfo) {
+				classes.push('selected')
+				direction = columnInfo.direction
+			}
+
 			return (
-				<div className="number" key={el}>№</div>
+				<div className={classes.join(' ')}
+					key={el}
+					onClick={(e)=> this.handleClick(e, el)} 
+					>
+					{el}
+					<SortIndicators 
+						columnId={el}
+						direction={direction} />
+				</div>
 			)
-		}
-
-		const classes = ['column-header']
-		const columnInfo = selectedColumns.find((column) => column.id === el)
-		let direction = null
-
-		if (columnInfo) {
-			classes.push('selected')
-			direction = columnInfo.direction
-		}
+		})
 
 		return (
-			<div className={classes.join(' ')}
-				key={el}
-				onClick={(e)=> handleClick(e, el)} 
-				>
-				{el}
-				<SortIndicators 
-					columnId={el}
-					direction={direction}
-					handleSort={handleSort} />
-			</div>
+			<>
+				{ items }
+			</>
 		)
-	})
-	return (
-		<>
-			{ items }
-		</>
-	)
+	}
 }
 
-const mapStateToProps = ({ data, changedData, selectedColumns }) => {
+const mapStateToProps = ({ sortedColumns }) => {
 	return {
-		data,
-		changedData,
-		selectedColumns,
+		sortedColumns,
 	}
 }
 
@@ -86,8 +81,6 @@ const mapDispatchToProps = {
 	columnSelected,
 	columnUnselected,
 	columnClearedAll,
-	dataChanged,
-	nothingMatched,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TableHeaders)

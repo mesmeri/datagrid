@@ -15,10 +15,12 @@ const findMatches = (data, value, field) => {
 					if (typeof item === 'string') {
 						return item.toLowerCase().includes(value.toLowerCase())
 					}
+					return false
 				})
 				if (index >= 0) {
 					return el
 				}
+				return false
 			})
 			break
 		case 'boolean':
@@ -27,8 +29,8 @@ const findMatches = (data, value, field) => {
 			})
 			break
 		default:
-
 	}
+
 	return resultData
 }
 

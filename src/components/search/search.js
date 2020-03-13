@@ -1,20 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { dataChanged, nothingMatched } from '../../actions/actions'
-import { findMatches } from '../../utils/utils'
+import { searchFilterSet } from '../../actions/actions'
 import store from '../../store/store'
 
-const Search = ({ data, dataChanged, nothingMatched }) => {
-	const { dispatch } = store 
-	const handleSearch = (value) => {
-		const matchedData = findMatches([...data], value)
-		if (matchedData.length === 0) {
-			dispatch(nothingMatched(true))
-			dispatch(dataChanged(matchedData))
-		} else {
-			dispatch(nothingMatched(false))
-			dispatch(dataChanged(matchedData))
-		}
+const Search = ({ searchFilterSet }) => {
+	const handleSearch = (e) => {
+		const value = e.target.value.trim()
+		store.dispatch(searchFilterSet(value))
 	}
 
 	return (
@@ -23,22 +15,17 @@ const Search = ({ data, dataChanged, nothingMatched }) => {
 	      	className="form-control mr-sm-2" 
 	      	type="text" 
 	      	placeholder="Search"
-	      	onChange={(e) => handleSearch(e.target.value.trim())} />
+	      	onChange={(e) => handleSearch(e)} />
     	</form>
 	)
 }
 
-const mapStateToProps = ({ data }) => {
-	return {
-		data,
-	}
+const mapStateToProps = () => {
+	return {}	
 }
 
-const mapDispatchToProps = () => {
-	return {
-		dataChanged,
-		nothingMatched,
-	}
+const mapDispatchToProps = {
+	searchFilterSet,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search)

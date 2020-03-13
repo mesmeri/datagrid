@@ -1,11 +1,13 @@
 const initialState = {
 	data: [],
-	changedData: [],
-	prevData: [],
+	displayData: [],
+	sortedColumns: [],
 	loading: true,
 	virtualization: true,
-	selectedColumns: [],
 	noMatchedData: false,
+	searchFilter: '',
+	isMarriedFilter: false,
+	shirtSizeFilter: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -14,6 +16,7 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				data: action.payload,
+				displayData: action.payload,
 				loading: false
 			}
 		case 'TOGGLE_VIRTUALIZATION': 
@@ -24,65 +27,81 @@ const reducer = (state = initialState, action) => {
 		case 'COLUMN_SELECTED':
 			return {
 				...state,
-				selectedColumns: [
-					...state.selectedColumns,
+				sortedColumns: [
+					...state.sortedColumns,
 					action.payload
 				],
 			}
 		case 'COLUMN_UNSELECTED':
-			const ind = state.selectedColumns.find((el) => el.id = action.columnId)
-			const newSelectedColumns = [
-				...state.selectedColumns.slice(0, ind),
-				...state.selectedColumns.slice(ind + 1)
+			const ind = state.sortedColumns.findIndex((el) => el.id = action.payload)
+			const newSortedColumns = [
+				...state.sortedColumns.slice(0, ind),
+				...state.sortedColumns.slice(ind + 1)
 				]
 			return {
 				...state,
-				selectedColumns: newSelectedColumns,
+				sortedColumns: newSortedColumns,
 			}
 		case 'COLUMN_CLEARED_ALL':
 			return {
 				...state,
-				selectedColumns: [],
+				sortedColumns: [],
 			}
 		case 'DATA_CHANGED':
 			return {
 				...state,
-				changedData: action.payload,
+				displayData: action.payload,
 			}
 		case 'COLUMN_DIRECTION_CHANGED':
-			const column = state.selectedColumns.find((el) => el.id === action.columnId)
-			const id = state.selectedColumns.indexOf(column)
+			const column = state.sortedColumns.find((el) => el.id === action.columnId)
+			const id = state.sortedColumns.indexOf(column)
+			
 			const newColumn = {
 						...column,
 						direction: action.payload
 					}
 			return {
 				...state,
-				selectedColumns: [
-					...state.selectedColumns.slice(0, id),
+				sortedColumns: [
+					...state.sortedColumns.slice(0, id),
 					newColumn,
-					...state.selectedColumns.slice(id + 1)
+					...state.sortedColumns.slice(id + 1)
 				]
 			}
-		case 'NOTHING_MATCHED': {
+		case 'SEARCH_FILTER_SET':
 			return {
 				...state,
-				noMatchedData: action.payload
+				searchFilter: action.payload
 			}
-		}
-		case 'PREV_DATA_APPLIED': {
+		case 'IS_MARRIED_FILTER_SET':
 			return {
 				...state,
-				changedData: [...state.prevData],
-				prevData: [],
+				isMarriedFilter: action.payload
 			}
-		}
-		case 'PREV_DATA_STASHED': {
+		case 'SHIRT_SIZES_FILTER_SET':
 			return {
 				...state,
-				prevData: action.payload,
+				shirtSizeFilter: action.payload
 			}
-		}
+		// case 'NOTHING_MATCHED': {
+		// 	return {
+		// 		...state,
+		// 		noMatchedData: action.payload
+		// 	}
+		// }
+		// case 'PREV_DATA_APPLIED': {
+		// 	return {
+		// 		...state,
+		// 		changedData: [...state.prevData],
+		// 		prevData: [],
+		// 	}
+		// }
+		// case 'PREV_DATA_STASHED': {
+		// 	return {
+		// 		...state,
+		// 		prevData: action.payload,
+		// 	}
+		// }
 		default: 
 			return state
 	}

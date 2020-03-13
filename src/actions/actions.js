@@ -34,10 +34,10 @@ const columnClearedAll = () => {
 	}
 }
 
-const dataChanged = (changedData) => {
+const dataChanged = (data) => {
 	return {
 		type: 'DATA_CHANGED',
-		payload: changedData,
+		payload: data,
 	}
 }
 
@@ -49,31 +49,52 @@ const columnDirectionChanged = (direction, columnId) => {
 	}
 }
 
-const nothingMatched = (value) => {
+const searchFilterSet = (value) => {
 	return {
-		type: 'NOTHING_MATCHED',
+		type: 'SEARCH_FILTER_SET',
 		payload: value,
 	}
 }
 
-const prevDataApplied = () => {
+const isMarriedFilterSet = (value) => {
 	return {
-		type: 'PREV_DATA_APPLIED'
+		type: 'IS_MARRIED_FILTER_SET',
+		payload: value,
 	}
 }
 
-const prevDataStashed = (data) => {
+const shirtSizesFilterSet = (value) => {
 	return {
-		type: 'PREV_DATA_STASHED',
-		payload: data,
+		type: 'SHIRT_SIZES_FILTER_SET',
+		payload: value,
 	}
 }
 
-const sizesSelected = () => {
-	return {
+// const nothingMatched = (value) => {
+// 	return {
+// 		type: 'NOTHING_MATCHED',
+// 		payload: value,
+// 	}
+// }
+
+// const prevDataApplied = () => {
+// 	return {
+// 		type: 'PREV_DATA_APPLIED'
+// 	}
+// }
+
+// const prevDataStashed = (data) => {
+// 	return {
+// 		type: 'PREV_DATA_STASHED',
+// 		payload: data,
+// 	}
+// }
+
+// const sizesSelected = () => {
+// 	return {
 		
-	}
-}
+// 	}
+// }
 
 export {
 	dataLoaded,
@@ -83,8 +104,11 @@ export {
 	columnClearedAll,
 	dataChanged,
 	columnDirectionChanged,
-	nothingMatched,
-	prevDataApplied,
-	prevDataStashed,
-	sizesSelected,
+	searchFilterSet,
+	isMarriedFilterSet,
+	shirtSizesFilterSet,
+	// nothingMatched,
+	// prevDataApplied,
+	// prevDataStashed,
+	// sizesSelected,
 }

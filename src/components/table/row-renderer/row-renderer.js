@@ -4,7 +4,6 @@ import TableHeaders from '../table-headers/table-headers'
 class RowRenderer extends PureComponent {
 
 	render () {
-
 		if (this.props.index === 0) {
 			return (
 				<div className="table-row table-header" style={this.props.style}>
@@ -34,43 +33,3 @@ class RowRenderer extends PureComponent {
 }
 
 export default RowRenderer
-
-
-				// <div className="table-row table-header" style={this.props.style}>
-				// 	<div className="number">№</div>
-				// 	<div className="column-header"
-				// 		onClick={this.handleSort.bind(this, 'name')} 
-				// 		columnId="name"
-				// 		>
-				// 		First name
-				// 		<SortIndicators />
-				// 	</div>
-				// 	<div className="column-header"
-				// 		onClick={this.handleSort.bind(this, 'lastName')}
-				// 		columnId="lastName"
-				// 		>
-				// 		Last name
-				// 		<SortIndicators />
-				// 	</div>
-				// 	<div className="column-header" 
-				// 		onClick={this.handleSort.bind(this, 'gender')}
-				// 		columnId="gender"
-				// 		>
-				// 		Gender
-				// 		<SortIndicators />
-				// 	</div>
-				// 	<div className="column-header" 
-				// 		onClick={this.handleSort.bind(null, 'points')}
-				// 		columnId="points"
-				// 		>
-				// 		Points
-				// 		<SortIndicators />
-				// 	</div>
-				// 	<div className="column-header"
-				// 		onClick={this.handleSort.bind(this, 'shirtSize')}
-				// 		columnId="shirtSize"
-				// 		>
-				// 		Shirt size
-				// 		<SortIndicators />
-				// 	</div>
-				// </div>

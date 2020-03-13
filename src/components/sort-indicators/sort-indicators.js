@@ -1,16 +1,15 @@
 import React from 'react'
 import { columnDirectionChanged } from '../../actions/actions'
 import { connect } from 'react-redux'
+import store from '../../store/store'
 
 import './sort-indicators.css'
 
-const SortIndicators = ({ columnId, direction, columnDirectionChanged, handleSort }) => {
+const SortIndicators = ({ columnId, direction, columnDirectionChanged }) => {
 	const handleChangeDirection = (e) => {
 		const direction = e.target.value
-		const isShiftPressed = e.shiftKey	
 
-		columnDirectionChanged(direction, columnId)
-		handleSort(isShiftPressed, columnId, direction)
+		store.dispatch(columnDirectionChanged(direction, columnId))
 	}
 
 	return (

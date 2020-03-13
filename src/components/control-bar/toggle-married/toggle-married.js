@@ -1,23 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { dataChanged, prevDataApplied, prevDataStashed } from '../../../actions/actions'
-import { findMatches } from '../../../utils/utils'
+import { isMarriedFilterSet } from '../../../actions/actions'
 import store from '../../../store/store'
 
-const ToggleMarried = ({ data, changedData, prevData, dataChanged, noMatchedData, prevDataStashed, prevDataApplied }) => {
-	const field = 'isMarried'
-
+const ToggleMarried = ({ isMarriedFilterSet }) => {
 	const handleChange = (e) => {
 		const { checked } = e.target 
-
-		if (checked) {
-			const cloneData = (changedData.length === 0) ? [...data] : [...changedData]
-			const matchedData = findMatches(cloneData, checked, field)
-			store.dispatch(prevDataStashed([...cloneData]))
-			store.dispatch(dataChanged(matchedData))
-		} else {
-			store.dispatch(dataChanged(prevData))
-		}
+		store.dispatch(isMarriedFilterSet(checked))
 	}
 
 	return (
@@ -27,24 +16,19 @@ const ToggleMarried = ({ data, changedData, prevData, dataChanged, noMatchedData
 	      	className="custom-control-input" 
 	      	id="toggleMarried"
 	      	onChange={(e) => handleChange(e)} />
-	      <label className="custom-control-label" htmlFor="toggleMarried">Only married</label>
+	      <label className="custom-control-label" htmlFor="toggleMarried">
+	      	Only married
+	      </label>
 	    </div>
 	)
 }
 
-const mapStateToProps = ({ data, changedData, prevData, noMatchedData }) => {
-	return {
-		data,
-		changedData,
-		prevData,
-		noMatchedData,
-	}
+const mapStateToProps = () => {
+	return {}
 }
 
 const mapDispatchToProps = {
-	dataChanged,
-	prevDataApplied,
-	prevDataStashed,
+	isMarriedFilterSet,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToggleMarried)

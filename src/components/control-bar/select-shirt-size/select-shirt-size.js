@@ -2,7 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated'; 
-import { sizesSelected, prevDataApplied, prevDataStashed } from '../../../actions/actions'
+import { shirtSizesFilterSet} from '../../../actions/actions'
+import store from '../../../store/store'
 
 const sizeOptions = [
   { value: 'S', label: 'S' },
@@ -15,11 +16,10 @@ const sizeOptions = [
 
 const animatedComponents = makeAnimated();
 
-
-const MultiselectShirtSize = ({ data, changedData, prevData, sizesSelected, prevDataApplied, prevDataStashed }) => {
+const SelectShirtSize = ({ shirtSizesFilterSet }) => {
 
 	const handleSelection = (options) => {
-		console.log(options)
+		store.dispatch(shirtSizesFilterSet('S'))
 	}
 
 	return (
@@ -38,18 +38,12 @@ const MultiselectShirtSize = ({ data, changedData, prevData, sizesSelected, prev
 	)
 }
 
-const mapStateToProps = ({ data, changedData, prevData }) => {
-	return {
-		data,
-		changedData,
-		prevData,
-	}
+const mapStateToProps = () => {
+	return {}
 }
 
 const mapDispatchToProps = {
-	sizesSelected,
-	prevDataApplied,
-	prevDataStashed, 
+	shirtSizesFilterSet, 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MultiselectShirtSize)
+export default connect(mapStateToProps, mapDispatchToProps)(SelectShirtSize)

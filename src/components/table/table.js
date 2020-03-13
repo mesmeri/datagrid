@@ -2,13 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import NativeTable from './native-table/native-table'
 import VirtualizedTable from './virtualized-table/virtualized-table'
+import getDisplayData  from '../../reducers/selectors'
 
 import './table.css'
 
-const Table = ({ data, changedData, virtualization, noMatchedData }) => {
+const Table = ({ displayData, virtualization }) => {
+	console.log('from table', displayData.length)
 
-	const rowData = (changedData.length === 0) ? data : changedData
-	console.log('from table', rowData.length, noMatchedData)
 	const NoData = () => {
 		return (
 			<div className="no-data text-center">Sorry, nothing was found ...</div>
@@ -17,20 +17,17 @@ const Table = ({ data, changedData, virtualization, noMatchedData }) => {
 
 	return (
 		<>
-		{ noMatchedData ? < NoData /> : virtualization ? 
-				<VirtualizedTable data={rowData} /> : 
-				<NativeTable data={rowData} />}
-
+		{ displayData.length === 0 ? < NoData /> : virtualization ? 
+				<VirtualizedTable data={displayData} /> : 
+				<NativeTable data={displayData} />}
 		</>
 	)
 }
 
-const mapStateToProps = ({ data, changedData, virtualization, noMatchedData }) => {
+const mapStateToProps = (state) => {
 	return {
-		data,
-		changedData,
-		virtualization,
-		noMatchedData,
+		displayData: getDisplayData(state),
+		virtualization: state.virtualization,
 	}
 }
 
