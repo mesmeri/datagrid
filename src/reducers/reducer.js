@@ -2,6 +2,7 @@ const initialState = {
 	data: [],
 	displayData: [],
 	sortedColumns: [],
+	selectedRows: [],
 	loading: true,
 	virtualization: true,
 	noMatchedData: false,
@@ -83,25 +84,32 @@ const reducer = (state = initialState, action) => {
 				...state,
 				shirtSizeFilter: action.payload
 			}
-		// case 'NOTHING_MATCHED': {
-		// 	return {
-		// 		...state,
-		// 		noMatchedData: action.payload
-		// 	}
-		// }
-		// case 'PREV_DATA_APPLIED': {
-		// 	return {
-		// 		...state,
-		// 		changedData: [...state.prevData],
-		// 		prevData: [],
-		// 	}
-		// }
-		// case 'PREV_DATA_STASHED': {
-		// 	return {
-		// 		...state,
-		// 		prevData: action.payload,
-		// 	}
-		// }
+		case 'SINGLE_ROW_SELECTED':
+			return {
+				...state,
+				selectedRows: [
+					action.payload,
+				]
+			}
+		case 'MULTIPLE_ROWS_SELECTED':
+			return {
+				...state,
+				selectedRows: [
+					...state.selectedRows,
+					action.payload,
+				]
+			}
+		case 'ROWS_DELETED':
+			const dataWithoutDeletedRows = [...state.data]
+			state.selectedRows.forEach(el => {
+				const rowIndex = dataWithoutDeletedRows.findIndex(item => item.id === el)
+				dataWithoutDeletedRows.splice(rowIndex, 1)
+			})
+			return {
+				...state,
+				data: dataWithoutDeletedRows,
+				selectedRows: [],
+			}
 		default: 
 			return state
 	}

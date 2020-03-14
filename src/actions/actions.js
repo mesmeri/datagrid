@@ -70,31 +70,25 @@ const shirtSizesFilterSet = (value) => {
 	}
 }
 
-// const nothingMatched = (value) => {
-// 	return {
-// 		type: 'NOTHING_MATCHED',
-// 		payload: value,
-// 	}
-// }
+const singleRowSelected = (rowId) => {
+	return {
+		type: 'SINGLE_ROW_SELECTED',
+		payload: rowId,
+	}
+} 
 
-// const prevDataApplied = () => {
-// 	return {
-// 		type: 'PREV_DATA_APPLIED'
-// 	}
-// }
+const multipleRowsSelected = (rowId) => {
+	return {
+		type: 'MULTIPLE_ROWS_SELECTED',
+		payload: rowId,
+	}
+} 
 
-// const prevDataStashed = (data) => {
-// 	return {
-// 		type: 'PREV_DATA_STASHED',
-// 		payload: data,
-// 	}
-// }
-
-// const sizesSelected = () => {
-// 	return {
-		
-// 	}
-// }
+const rowsDeleted = () => {
+	return {
+		type: 'ROWS_DELETED',
+	}
+}
 
 export {
 	dataLoaded,
@@ -107,8 +101,7 @@ export {
 	searchFilterSet,
 	isMarriedFilterSet,
 	shirtSizesFilterSet,
-	// nothingMatched,
-	// prevDataApplied,
-	// prevDataStashed,
-	// sizesSelected,
+	singleRowSelected,
+	multipleRowsSelected,
+	rowsDeleted,
 }

@@ -32,7 +32,7 @@ const findMatches = (data, value, type) => {
 			resultData = data.filter(el => {
 				return value.includes(el[type])
 			})
-			console.log('from utils', resultData)
+			break
 		default:
 	}
 

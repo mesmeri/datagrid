@@ -31,7 +31,6 @@ const getDisplayData = (state) => {
 	}
 
 	if (shirtSizeFilter.length !== 0) {
-		console.log('options from selector', shirtSizeFilter)
 		const matched = findMatches(result, shirtSizeFilter, 'shirtSize')
 		result = matched
 	}
