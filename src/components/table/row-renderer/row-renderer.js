@@ -60,4 +60,5 @@ const mapDispatchToProps = {
 	singleRowSelected,
 	multipleRowsSelected,
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(RowRenderer)

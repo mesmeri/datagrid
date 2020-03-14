@@ -6,7 +6,7 @@ import store from '../../../store/store'
 
 const headers = ['Number', 'First name', 'Last name', 'Gender', 'Married', 'Points', 'Shirt size']
 
-class TableHeaders extends React.PureComponent {
+class TableHeaders extends React.Component {
 
 	handleClick = (e, columnId) => {
 		if (e.target.tagName === 'INPUT') {
@@ -41,11 +41,14 @@ class TableHeaders extends React.PureComponent {
 				return <div className="number" key={el}>№</div>
 			}
 
-			const classes = ['column-header']
-			const columnInfo = sortedColumns.find((column) => column.id === el)
 			let direction = null
 
+			const classes = ['column-header']
+			const columnInfo = sortedColumns.find((column) => column.id === el)
+			console.log('columnInfo', columnInfo)
+
 			if (columnInfo) {
+				console.log(columnInfo.id)
 				classes.push('selected')
 				direction = columnInfo.direction
 			}

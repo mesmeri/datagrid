@@ -6,24 +6,22 @@ import store from '../../store/store'
 import './sort-indicators.css'
 
 const SortIndicators = ({ columnId, direction, columnDirectionChanged }) => {
-	const handleChangeDirection = (e) => {
-		const direction = e.target.value
-
-		store.dispatch(columnDirectionChanged(direction, columnId))
+	const handleChangeDirection = (value) => {
+		store.dispatch(columnDirectionChanged(value, columnId))
 	}
 
 	return (
 		<div className="sort-indicators">
-			<input type="radio" name="direction" 
+			<input type="radio"
 				checked={direction === 'asc'}
-				onChange={(e) => handleChangeDirection(e)}
+				onChange={() => handleChangeDirection('asc')}
 				className="arrow arrow-up" 
-				value="asc" />
-			<input type="radio" name="direction"
+			/>
+			<input type="radio"
 				checked={direction === 'desc'} 
-				onChange={(e) => handleChangeDirection(e)}
+				onChange={() => handleChangeDirection('desc')}
 				className="arrow arrow-down"
-				value="desc" />
+			/>
 		</div>
 	)
 }

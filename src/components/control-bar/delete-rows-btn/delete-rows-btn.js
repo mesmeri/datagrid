@@ -8,7 +8,7 @@ const DeleteRowsBtn = ({ selectedRows, rowsDeleted }) => {
 	const handleDelete = () => {
 		store.dispatch(rowsDeleted())
 	}
-	const classes = ['btn', 'btn-primary', 'ml-1', 'btn-sm']
+	const classes = ['btn', 'btn-primary', 'ml-1', 'btn-sm', 'mt-1']
 	let disabled = false
 
 	if (selectedRows.length === 0) {
@@ -17,13 +17,18 @@ const DeleteRowsBtn = ({ selectedRows, rowsDeleted }) => {
 	}
 
 	return (
-		<button 
-			className={classes.join(" ")}
-			onClick={handleDelete}
-			disabled={disabled}
-  		>
-  			Delete rows
-  		</button>
+		<div className="text-center">
+	  		<p style={{fontStyle: 'italic'}}>
+				Hold down Ctrl to select multiple lines
+	  		</p>
+			<button 
+				className={classes.join(" ")}
+				onClick={handleDelete}
+				disabled={disabled}
+	  		>
+	  			Delete lines
+	  		</button>
+  		</div>
 	)
 }
 
