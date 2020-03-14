@@ -48,7 +48,8 @@
 	position: relative;
 }
 
-.column-header.selected {
+.column-header.selected,
+.column-header:hover {
 	color: #ee686e;
 }
 

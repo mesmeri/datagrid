@@ -16,7 +16,11 @@ const ToggleMarried = ({ isMarriedFilterSet }) => {
 	      	className="custom-control-input" 
 	      	id="toggleMarried"
 	      	onChange={(e) => handleChange(e)} />
-	      <label className="custom-control-label" htmlFor="toggleMarried">
+	      <label 
+	      	className="custom-control-label" 
+	      	htmlFor="toggleMarried"
+	      	style={{cursor: 'pointer'}}
+	      >
 	      	Only married
 	      </label>
 	    </div>

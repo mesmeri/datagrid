@@ -1,14 +1,14 @@
 import _ from 'lodash'
 
-const sortItems = (data, field, direction) => {
-	const orderedData = _.orderBy(data, field, direction)
+const sortItems = (data, fields, directions) => {
+	const orderedData = _.orderBy(data, fields, directions)
 	return orderedData
 }
 
-const findMatches = (data, value, field) => {
+const findMatches = (data, value, type) => {
 	let resultData = null
-	switch (typeof value) {
-		case 'string':
+	switch (type) {
+		case 'search':
 			resultData = data.filter(el => {
 				const values = Object.values(el)
 				const index = values.findIndex(item => {
@@ -23,11 +23,16 @@ const findMatches = (data, value, field) => {
 				return false
 			})
 			break
-		case 'boolean':
+		case 'isMarried':
 			resultData = data.filter(el => {
-				return el[field]
+				return el[type]
 			})
 			break
+		case 'shirtSize':
+			resultData = data.filter(el => {
+				return value.includes(el[type])
+			})
+			console.log('from utils', resultData)
 		default:
 	}
 

@@ -8,13 +8,20 @@ const getDisplayData = (state) => {
 	let result = [...data]
 
 	if (sortedColumns.length !== 0) {
-		const field = service.mapStrToDataField(sortedColumns[0].id)
-		const sorted = sortItems(result, field, sortedColumns[0].direction)
+		const fields = sortedColumns.map(el => {
+			return service.mapStrToDataField(el.id)
+		})
+
+		const directions = sortedColumns.map(el => {
+			return el.direction
+		})
+
+		const sorted = sortItems(result, fields, directions)
 		result = sorted
 	}
 
 	if (searchFilter !== '') {
-		const matched = findMatches(result, searchFilter)
+		const matched = findMatches(result, searchFilter, 'search')
 		result = matched
 	}
 
@@ -24,6 +31,7 @@ const getDisplayData = (state) => {
 	}
 
 	if (shirtSizeFilter.length !== 0) {
+		console.log('options from selector', shirtSizeFilter)
 		const matched = findMatches(result, shirtSizeFilter, 'shirtSize')
 		result = matched
 	}
