@@ -6,7 +6,7 @@ import store from '../../../store/store'
 
 const headers = ['Number', 'First name', 'Last name', 'Gender', 'Married', 'Points', 'Shirt size']
 
-class TableHeaders extends React.Component {
+class TableHeaders extends React.PureComponent {
 
 	handleClick = (e, columnId) => {
 		if (e.target.tagName === 'INPUT') {
@@ -34,7 +34,7 @@ class TableHeaders extends React.Component {
 	}
 
 	render () {
-		const { sortedColumns } = this.props
+		const { sortedColumns, style } = this.props
 
 		const items = headers.map(el => {
 			if (el === 'Number') {
@@ -45,10 +45,8 @@ class TableHeaders extends React.Component {
 
 			const classes = ['column-header']
 			const columnInfo = sortedColumns.find((column) => column.id === el)
-			console.log('columnInfo', columnInfo)
 
 			if (columnInfo) {
-				console.log(columnInfo.id)
 				classes.push('selected')
 				direction = columnInfo.direction
 			}
@@ -67,9 +65,9 @@ class TableHeaders extends React.Component {
 		})
 
 		return (
-			<>
+			<div className="table-row table-header" style={style}>
 				{ items }
-			</>
+			</div>
 		)
 	}
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import TableHeaders from '../table-headers/table-headers'
+import Row from '../row/row'
 import { connect } from 'react-redux'
 import { singleRowSelected, multipleRowsSelected } from '../../../actions/actions'
 import store from '../../../store/store'
@@ -14,36 +15,24 @@ const NativeTable = ({ data, selectedRows, singleRowSelected, multipleRowsSelect
 		}
 	}
 
-	const listItems = data.map((el, index) => {
-		const classes = ['table-row', 'native-table-row']
-		el.gender === 'Male' ? classes.push('male') : classes.push('female')
-		if (selectedRows.includes(el.id)) {
-			classes.push('active')
-		}
+	const classes = ['table-row', 'native-table-row']
 
+	const listItems = data.map((el, index) => {
 		return (
-			<div 
-				className={classes.join(" ")} 
+			<Row
 				key={el.firstName + el.lastName}
+				cls={classes}
 				onClick={(e) => handleSelectRow(e, el.id)}
-			>
-				<div className="number">{index + 1}</div>
-				<div>{el.firstName}</div>
-				<div>{el.lastName}</div>
-				<div>{el.gender}</div>
-				<div>{el.isMarried ? "Yes" : "No"}</div>
-				<div>{el.points}</div>
-				<div>{el.shirtSize}</div>
-			</div>
+				el={el}
+				index={index + 1} 
+			/>
 		)
 	})
 
 	return (
 		<div className="table-wrapper">
 			<div className="table-inner">
-				<div className="table-row table-header">
-					<TableHeaders />
-				</div>
+				<TableHeaders style={{minHeight: '45px'}}/>
 				{ listItems }
 			</div>
 		</div>
