@@ -3,6 +3,7 @@ import SortIndicators from '../../sort-indicators/sort-indicators'
 import { columnSelected, columnUnselected, columnClearedAll } from '../../../actions/actions'
 import { connect } from 'react-redux'
 import store from '../../../store/store'
+import DataService from '../../../services/data-service'
 
 const headers = ['Number', 'First name', 'Last name', 'Gender', 'Married', 'Points', 'Shirt size']
 
@@ -34,11 +35,18 @@ class TableHeaders extends React.PureComponent {
 	}
 
 	render () {
-		const { sortedColumns, style } = this.props
+		const { sortedColumns, hiddenColumns, style } = this.props
+		const service = new DataService()
+		const count = (headers.length - hiddenColumns.length)
+		const styleObj = {width:`calc((100% - 60px) / ${count - 1})`}
 
 		const items = headers.map(el => {
 			if (el === 'Number') {
-				return <div className="number" key={el}>№</div>
+				return <div className="number" key={el} >№</div>
+			}
+
+			if (hiddenColumns.includes(service.mapStrToDataField(el))) {
+				return
 			}
 
 			let direction = null
@@ -53,6 +61,7 @@ class TableHeaders extends React.PureComponent {
 
 			return (
 				<div className={classes.join(' ')}
+					style={styleObj}
 					key={el}
 					onClick={(e)=> this.handleClick(e, el)} 
 					>
@@ -72,9 +81,10 @@ class TableHeaders extends React.PureComponent {
 	}
 }
 
-const mapStateToProps = ({ sortedColumns }) => {
+const mapStateToProps = ({ sortedColumns, hiddenColumns }) => {
 	return {
 		sortedColumns,
+		hiddenColumns,
 	}
 }
 

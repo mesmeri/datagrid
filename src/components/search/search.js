@@ -10,7 +10,7 @@ const Search = ({ searchFilterSet }) => {
 	}
 
 	return (
-		<form className="form-inline my-2 my-lg-0">
+		<form className="form-inline my-lg-0">
 	      <input 
 	      	className="form-control mr-sm-2" 
 	      	type="text" 

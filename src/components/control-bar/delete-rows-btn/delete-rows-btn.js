@@ -18,9 +18,6 @@ const DeleteRowsBtn = ({ selectedRows, rowsDeleted }) => {
 
 	return (
 		<div className="text-center">
-	  		<p style={{fontStyle: 'italic'}}>
-				Hold down Ctrl to select multiple lines
-	  		</p>
 			<button 
 				className={classes.join(" ")}
 				onClick={handleDelete}
@@ -28,6 +25,9 @@ const DeleteRowsBtn = ({ selectedRows, rowsDeleted }) => {
 	  		>
 	  			Delete lines
 	  		</button>
+	  		<span style={{fontStyle: 'italic'}} className="ml-2">
+				Hold down Ctrl to select multiple lines
+	  		</span>
   		</div>
 	)
 }

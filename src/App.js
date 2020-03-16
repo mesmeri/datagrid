@@ -27,6 +27,8 @@ class App extends Component {
 			  	<h1 className="text-center mb-3 mt-3">
 			  		Table with mock data
 			  	</h1>
+			</div>
+			<div className="container-fluid">
 			  	<main className="pt-1">
 		  			<ControlBar />
 			  		{ this.props.loading ? <Spinner /> : <Table />}
@@ -37,10 +39,8 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ loading }) => {
-	return {
-		loading
-	}
+const mapStateToProps = (state) => {
+	return state
 }
 
 const mapDispatchToProps = {

@@ -1,11 +1,10 @@
 const initialState = {
 	data: [],
-	displayData: [],
 	sortedColumns: [],
+	hiddenColumns: [],
 	selectedRows: [],
 	loading: true,
 	virtualization: true,
-	noMatchedData: false,
 	searchFilter: '',
 	isMarriedFilter: false,
 	shirtSizeFilter: [],
@@ -109,6 +108,23 @@ const reducer = (state = initialState, action) => {
 				...state,
 				data: dataWithoutDeletedRows,
 				selectedRows: [],
+			}
+		case 'COLUMN_WAS_HIDDEN':
+			return {
+				...state,
+				hiddenColumns: [
+					...state.hiddenColumns,
+					action.payload,
+					]
+			}
+		case 'COLUMN_WAS_SHOWN':
+			const index = state.hiddenColumns.indexOf(action.payload)
+			return {
+				...state,
+				hiddenColumns: [
+					...state.hiddenColumns.slice(0, index),
+					...state.hiddenColumns.slice(index + 1),
+					]
 			}
 		default: 
 			return state

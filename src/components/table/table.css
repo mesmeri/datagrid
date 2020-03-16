@@ -23,7 +23,7 @@
 }
 
 .table-row div {
-	width: calc((100% - 60px) / 6);
+	/*width: calc((100% - 60px) / 6)*/;
 	text-overflow: ellipsis;
 	padding-left: 10px;
 	padding-right: 10px;

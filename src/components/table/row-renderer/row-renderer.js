@@ -17,7 +17,6 @@ class RowRenderer extends PureComponent {
 
 	render () {
 		if (this.props.index === 0) {
-			console.log(this.props.style)
 			return (
 				<TableHeaders style={this.props.style} />
 			)

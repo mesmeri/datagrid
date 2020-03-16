@@ -90,6 +90,20 @@ const rowsDeleted = () => {
 	}
 }
 
+const columnWasHidden = (columnId) => {
+	return {
+		type: 'COLUMN_WAS_HIDDEN',
+		payload: columnId,
+	}
+}
+
+const columnWasShown = (columnId) => {
+	return {
+		type: 'COLUMN_WAS_SHOWN',
+		payload: columnId,
+	}
+}
+
 export {
 	dataLoaded,
 	toggleVirtualization,
@@ -104,4 +118,6 @@ export {
 	singleRowSelected,
 	multipleRowsSelected,
 	rowsDeleted,
+	columnWasHidden,
+	columnWasShown,
 }

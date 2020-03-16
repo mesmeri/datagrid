@@ -1,8 +1,26 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-const Row = ({ el, selectedRows, cls, onClick, index, style }) => {
+const Row = ({ el, selectedRows, cls, onClick, index, style, hiddenColumns }) => {
+	const fields = ['id', 'firstName', 'lastName', 'gender', 'isMarried', 'points', 'shirtSize']
 	const classes = cls
+	const count = (fields.length - hiddenColumns.length)
+	const styleObj = {width:`calc((100% - 60px) / ${count - 1})`}
+	const cells = fields.map(field => { 
+		if (field === 'id') {
+			return <div className="number" key={field}>{index}</div> 
+		}
+		if (field === 'isMarried') {
+			const married = (el.isMarried ? 'Yes' : 'No')
+			return (!(hiddenColumns.includes('isMarried')) ? 
+						<div key={'isMarried'} style={styleObj}>{married}</div> :
+						null )
+		}
+
+		return (!(hiddenColumns.includes(field)) ?
+					<div key={field} style={styleObj}>{el[field]}</div> :
+					null )
+	})
 
 	el.gender === 'Male' ? classes.push('male') : classes.push('female')
 	if (selectedRows.includes(el.id)) {
@@ -14,20 +32,15 @@ const Row = ({ el, selectedRows, cls, onClick, index, style }) => {
 			className={classes.join(' ')} 
 			onClick={onClick}
 		>
-			<div className="number">{index}</div>
-			<div>{el.firstName}</div>
-			<div>{el.lastName}</div>
-			<div>{el.gender}</div>
-			<div>{el.isMarried ? "Yes" : "No"}</div>
-			<div>{el.points}</div>
-			<div>{el.shirtSize}</div>
+			{ cells }
 		</div>
 	)
 }
 
-const mapStateToProps = ({ selectedRows }) => {
+const mapStateToProps = ({ selectedRows, hiddenColumns }) => {
 	return {
 		selectedRows,
+		hiddenColumns,
 	}
 }
 

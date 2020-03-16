@@ -27,7 +27,7 @@ const SelectShirtSize = ({ shirtSizesFilterSet }) => {
 
 
 	return (
-		<div className="ml-5" style={{minWidth: '400px'}}>
+		<div className="ml-5">
   			<Select
   				closeMenuOnSelect={false}
       			components={animatedComponents}
