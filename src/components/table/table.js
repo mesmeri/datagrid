@@ -27,7 +27,7 @@ const Table = ({ displayData, virtualization }) => {
 const mapStateToProps = (state) => {
 	return {
 		displayData: getDisplayData(state),
-		virtualization: state.virtualization,
+		virtualization: state.general.virtualization,
 	}
 }
 

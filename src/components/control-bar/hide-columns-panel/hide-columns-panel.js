@@ -25,7 +25,6 @@ const HideColumnsPanel = ({ hiddenColumns, columnWasHidden, columnWasShown }) =>
 	})
 
 	const handleCheck = (e, columnId) => {
-		console.log('checked')
 		if (e.target.checked) {
 			columnWasShown(columnId)
 		} 
@@ -41,7 +40,7 @@ const HideColumnsPanel = ({ hiddenColumns, columnWasHidden, columnWasShown }) =>
 	)
 }
 
-const mapStateToProps = ({ hiddenColumns }) => {
+const mapStateToProps = ({ columns: { hiddenColumns }}) => {
 	return {
 		hiddenColumns,
 	}

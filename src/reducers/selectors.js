@@ -4,7 +4,9 @@ import DataService from '../services/data-service'
 const service = new DataService()
 
 const getDisplayData = (state) => {
-	const { data, sortedColumns, searchFilter, isMarriedFilter, shirtSizeFilter } = state
+	const { data } = state.general 
+	const { searchFilter, isMarriedFilter, shirtSizeFilter } = state.filters
+	const { sortedColumns } = state.columns
 	let result = [...data]
 
 	if (sortedColumns.length !== 0) {

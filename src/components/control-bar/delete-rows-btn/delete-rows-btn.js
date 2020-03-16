@@ -32,7 +32,7 @@ const DeleteRowsBtn = ({ selectedRows, rowsDeleted }) => {
 	)
 }
 
-const mapStoreToProps = ({ selectedRows }) => {
+const mapStoreToProps = ({ general: { selectedRows }}) => {
 	return {
 		selectedRows,
 	}

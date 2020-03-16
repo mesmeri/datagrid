@@ -2,14 +2,13 @@ import React from 'react'
 import SortIndicators from '../../sort-indicators/sort-indicators'
 import { columnSelected, columnUnselected, columnClearedAll } from '../../../actions/actions'
 import { connect } from 'react-redux'
-import store from '../../../store/store'
 import DataService from '../../../services/data-service'
 
 const headers = ['Number', 'First name', 'Last name', 'Gender', 'Married', 'Points', 'Shirt size']
 
 class TableHeaders extends React.PureComponent {
 
-	handleClick = (e, columnId) => {
+	handleClick (e, columnId) {
 		if (e.target.tagName === 'INPUT') {
 			return
 		}
@@ -19,18 +18,17 @@ class TableHeaders extends React.PureComponent {
 	}
 
 	toggleColumn = (isShiftPressed, columnId) => {
-		const { dispatch } = store
 		const { sortedColumns, 
 				columnSelected, 
 				columnUnselected, 
 				columnClearedAll } = this.props
 		if (sortedColumns.find((el) => el.id === columnId)) {
-			dispatch(columnUnselected(columnId))
+			columnUnselected(columnId)
 		} else if (!isShiftPressed && sortedColumns.length !== 0) {
-			dispatch(columnClearedAll())
-			dispatch(columnSelected(columnId))
+			columnClearedAll()
+			columnSelected(columnId)
 		} else {
-			dispatch(columnSelected(columnId))
+			columnSelected(columnId)
 		}
 	}
 
@@ -64,8 +62,8 @@ class TableHeaders extends React.PureComponent {
 					style={styleObj}
 					key={el}
 					onClick={(e)=> this.handleClick(e, el)} 
-					>
-					{el}
+				>
+						{el}
 					<SortIndicators 
 						columnId={el}
 						direction={direction} />
@@ -81,7 +79,7 @@ class TableHeaders extends React.PureComponent {
 	}
 }
 
-const mapStateToProps = ({ sortedColumns, hiddenColumns }) => {
+const mapStateToProps = ({ columns: { sortedColumns, hiddenColumns }}) => {
 	return {
 		sortedColumns,
 		hiddenColumns,

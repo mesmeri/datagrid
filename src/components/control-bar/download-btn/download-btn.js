@@ -25,7 +25,7 @@ const DownloadBtn = ({ displayData, hiddenColumns }) => {
 const mapStateToProps = (state) => {
 	return {
 		displayData: getDisplayData(state),
-		hiddenColumns: state.hiddenColumns,
+		hiddenColumns: state.columns.hiddenColumns,
 	}
 } 
 

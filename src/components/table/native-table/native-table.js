@@ -39,7 +39,7 @@ const NativeTable = ({ data, selectedRows, singleRowSelected, multipleRowsSelect
 	)
 }
 
-const mapStateToProps = ({ selectedRows }) => {
+const mapStateToProps = ({ general: { selectedRows }}) => {
 	return {
 		selectedRows,
 	}

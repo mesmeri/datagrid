@@ -15,7 +15,7 @@ const Header = ({ virtualization, handleToggleVirtualization }) => {
 	)
 }
 
-const mapStateToProps = ({ virtualization }) => {
+const mapStateToProps = ({ general: { virtualization }}) => {
 	return {
 		virtualization
 	}

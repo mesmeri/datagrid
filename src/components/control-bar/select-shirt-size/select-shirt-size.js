@@ -25,7 +25,6 @@ const SelectShirtSize = ({ shirtSizesFilterSet }) => {
 		store.dispatch(shirtSizesFilterSet(selectedOptions))
 	}
 
-
 	return (
 		<div className="ml-5">
   			<Select

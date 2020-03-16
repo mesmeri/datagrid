@@ -39,8 +39,10 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-	return state
+const mapStateToProps = ({ general: { loading }}) => {
+	return {
+		loading
+	}
 }
 
 const mapDispatchToProps = {

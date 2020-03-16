@@ -2,7 +2,7 @@ import React from 'react'
 
 const ErrorMessage = () => {
 	return (
-		<div>
+		<div className="error-boundry">
 			<span>
 				An error ocured...Please refresh the page
 			</span>

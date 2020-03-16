@@ -37,7 +37,7 @@ const Row = ({ el, selectedRows, cls, onClick, index, style, hiddenColumns }) =>
 	)
 }
 
-const mapStateToProps = ({ selectedRows, hiddenColumns }) => {
+const mapStateToProps = ({ general: { selectedRows }, columns: { hiddenColumns }}) => {
 	return {
 		selectedRows,
 		hiddenColumns,

@@ -8,12 +8,12 @@ import DownloadBtn from './download-btn/download-btn'
 
 import './control-bar.css'
 
-const ControlBar = ({ displayData }) => {
+const ControlBar = () => {
 
 	return (
 		<div className="mb-4 d-flex flex-column" >
 			<div className="row mb-4">
-	  			<div className="col-6 col-md-2">
+	  			<div className="col-6 col-md-3">
 	  				<Search />
 	  			</div>
 	  			<div className="col-6 col-md-2">
@@ -22,7 +22,7 @@ const ControlBar = ({ displayData }) => {
 	  			<div className="col-12 col-md-4">
 	  				<SelectShirtSize />
 	  			</div>
-		  		<div className="col-8 offset-md-2 col-md-2">
+		  		<div className="col-8 offset-md-1 col-md-2">
 		  			<DownloadBtn />
 				</div>
 	  		</div>

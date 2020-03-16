@@ -1,12 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { isMarriedFilterSet } from '../../../actions/actions'
-import store from '../../../store/store'
 
 const ToggleMarried = ({ isMarriedFilterSet }) => {
 	const handleChange = (e) => {
 		const { checked } = e.target 
-		store.dispatch(isMarriedFilterSet(checked))
+		isMarriedFilterSet(checked)
 	}
 
 	return (
