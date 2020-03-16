@@ -16,11 +16,11 @@ const Table = ({ displayData, virtualization }) => {
 	}
 
 	return (
-		<>
-		{ displayData.length === 0 ? < NoData /> : virtualization ? 
-				<VirtualizedTable data={displayData} /> : 
-				<NativeTable data={displayData} />}
-		</>
+		<div className="table-container">
+			{ displayData.length === 0 ? < NoData /> : virtualization ? 
+					<VirtualizedTable data={displayData} /> : 
+					<NativeTable data={displayData} />}
+		</div>
 	)
 }
 
