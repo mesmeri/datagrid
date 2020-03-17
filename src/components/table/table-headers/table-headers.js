@@ -44,9 +44,9 @@ class TableHeaders extends React.PureComponent {
 			}
 
 			if (hiddenColumns.includes(service.mapStrToDataField(el))) {
-				return
+				//eslint-disable-next-line
+				return 
 			}
-
 			let direction = null
 
 			const classes = ['column-header']
@@ -69,6 +69,7 @@ class TableHeaders extends React.PureComponent {
 						direction={direction} />
 				</div>
 			)
+
 		})
 
 		return (

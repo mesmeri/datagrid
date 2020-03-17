@@ -7,7 +7,6 @@ import getDisplayData  from '../../reducers/selectors'
 import './table.css'
 
 const Table = ({ displayData, virtualization }) => {
-	console.log('from table', displayData.length)
 
 	const NoData = () => {
 		return (

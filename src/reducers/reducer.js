@@ -1,24 +1,9 @@
+import { loadState } from '../utils/local-storage'
 import updateColumns from './update-columns'
 import updateFilters from './update-filters'
 import updateGeneral from './update-general'
 
-const initialState = {
-	columns: {
-		sortedColumns: [],
-		hiddenColumns: [],
-	},
-	filters: {
-		searchFilter: '',
-		isMarriedFilter: false,
-		shirtSizeFilter: [],
-	},
-	general: {
-		selectedRows: [],
-		data: [],
-		loading: true,
-		virtualization: true,
-	}
-}
+const initialState = loadState()
 
 const reducer = (state = initialState, action) => {
 	return {

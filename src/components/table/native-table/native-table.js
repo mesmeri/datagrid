@@ -15,9 +15,9 @@ const NativeTable = ({ data, selectedRows, singleRowSelected, multipleRowsSelect
 		}
 	}
 
-	const classes = ['table-row', 'native-table-row']
 
 	const listItems = data.map((el, index) => {
+	const classes = ['table-row', 'native-table-row']
 		return (
 			<Row
 				key={el.firstName + el.lastName}

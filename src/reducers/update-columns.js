@@ -10,7 +10,6 @@ const updateColumns = (state, action) => {
 			}
 		case 'COLUMN_UNSELECTED':
 			const ind = state.columns.sortedColumns.findIndex((el) => el.id === action.payload)
-			console.log('sorted', state.columns.sortedColumns)
 			const newSortedColumns = [
 				...state.columns.sortedColumns.slice(0, ind),
 				...state.columns.sortedColumns.slice(ind + 1)
