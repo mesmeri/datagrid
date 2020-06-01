@@ -1,12 +1,22 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import ErrorBoundry from './components/error-boundry/error-boundry'
+import App from './App'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import store from './store/store'
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+import './styles/bootstrap.min.css'
+
+const Application = () => {
+	return (
+		<Provider store={store}>
+			<ErrorBoundry>
+				<App />
+			</ErrorBoundry>
+		</Provider>
+	)
+}
+
+ReactDOM.render(<Application />, document.getElementById('root'));
+

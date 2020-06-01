@@ -1,0 +1,11 @@
+.select__control:hover {
+	border-color: green;
+	box-shadow: none;
+
+}
+
+.select__control:focus,
+.select__control:hover {
+	border-color: green !important;
+	box-shadow: none !important;
+}

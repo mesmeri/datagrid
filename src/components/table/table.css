@@ -1,0 +1,76 @@
+.table-container {
+	overflow-x: scroll
+}
+
+.table-wrapper {
+	display: flex;
+	justify-content: center;
+}
+
+.table-inner {
+	width: calc(100% - 40px);
+	height: 100vh;
+	overflow-y: scroll;
+}
+
+.table-row {
+	display: flex;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+	cursor: pointer;
+	transition: all 0.2s ease;
+	padding: 5px 10px;
+	align-items: center;
+}
+
+.native-table-row {
+	padding: 13px 10px;
+}
+
+.table-row div {
+	/*width: calc((100% - 60px) / 6)*/;
+	text-overflow: ellipsis;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.table-row div.number {
+	width: 60px;
+	font-weight: bold;
+}
+
+
+.table-row.active {
+	background-color: rgba(86, 204, 157, 0.6);
+	color: #ffffff;
+}
+
+.female:hover {
+	background-color: rgba(243, 150, 154, 0.6);
+	color: #ffffff;
+}
+
+.male:hover {
+	background-color: rgba(46, 158, 181, 0.3);
+	color: #ffffff;
+}
+
+.table-header {
+	font-weight: bold;
+	align-items: stretch;
+	user-select: none;
+}
+
+.column-header {
+	position: relative;
+}
+
+.column-header.selected,
+.column-header:hover {
+	color: #ee686e;
+}
+
+.no-data {
+	padding: 50px 20px;
+	font-size: 28px;
+	font-style: italic;
+}
